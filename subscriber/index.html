@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+  <title>Progresso de estudo</title>
+  <script src="https://unpkg.com/mqtt@5.3.5/dist/mqtt.min.js"></script>
+  <script type="text/javascript">
+      const options = {
+        clean: true,
+        reconnectPeriod: 1000
+      }
+      const client  = mqtt.connect('ws://' + location.hostname + ':15675/ws', options)
+      const topic = 'progress'
+
+      client.on('connect', function () {
+        console.log('Connected!')
+        client.subscribe(topic);
+      })
+      client.on('close', function () {
+        console.log('Disconnected!')
+      })
+      client.on('reconnect', function () {
+        console.log('Reconnecting...')
+      })
+      client.on('error', function (error) {
+        console.log('Error:' + error)
+      })
+
+      client.on('message', function (topic, message) {
+        document.querySelector('.bg-green-500').style.width = message.toString() + '%'
+      })
+  </script>
+</head>
+<body>
+  <h1 class="text-3xl font-bold text-center my-8">Progresso de Estudo</h1>
+  <div class="flex justify-center my-8">
+    <img src="images/happy.jpeg" alt="Ilustração de pessoa estudando">
+  </div>
+  <div class="w-3/4 mx-auto bg-gray-300 h-8 rounded-full">
+    <div class="h-full bg-green-500 rounded-full" style="width: 0%;"></div>
+  </div>
+</body>
+</html>
