@@ -43,6 +43,14 @@ composer install
 php index.php
 ```
 
+## Go Publisher
+
+O produtor em Go funciona um pouco diferente. São enviadas 50 mensagens incrementais, para ter uma visualização de progresso da barra na página. Certifique de que tem o go instalado em sua máquina local e execute:
+
+```
+go run publisher.go
+```
+
 Pronto!
 ## Exemplo em funcionamento
 
