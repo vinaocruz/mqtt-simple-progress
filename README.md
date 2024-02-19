@@ -34,6 +34,15 @@ mosquitto_pub -t progress -m 20
 
 `progress` refere-se ao nome do tópico para onde será enviado a mensagem.
 
+## PHP Publisher
+
+Para ampliar a experiências desse exemplo, também é possível enviar uma mensagem com produtor em php, localizado na pasta `/publisher`. Instale a dependência via composer e execute o arquivo index.php, alterando o valor do progresso diretamente no código:
+
+```
+composer install
+php index.php
+```
+
 Pronto!
 ## Exemplo em funcionamento
 
